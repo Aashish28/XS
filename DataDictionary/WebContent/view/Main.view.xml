@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" controllerName="hanadd.view.Main">
+   <Page title="{i18n&gt;HanaDataDictionary}" showNavButton="false" navButtonPress="handleNavButtonPress" enableScrolling="true">
+      <Panel headerText="{i18n&gt;SelectionCriteria}" width="100%" height="auto" expandable="true" expanded="true">
+         <content>
+            <form:SimpleForm visible="true" labelSpanL="1" maxContainerCols="3" labelMinWidth="50%" width="50%" class="sapUiSmallMargin">
+               <form:content>
+                  <Title xmlns="sap.ui.core" text="" />
+                  <Label id="lblCombo" visible="true" text="{i18n&gt;Schema}" width="auto" class="sapUiTinyMarginTop"/>
+                  <ComboBox id="cbx" items="{/}" selectionChange="CbxSelect">
+                     <items>
+                        <core:Item key="{SCHEMA_NAME}" text="{SCHEMA_NAME}" />
+                     </items>
+                  </ComboBox>
+                  <Title xmlns="sap.ui.core" text="" />
+                  <Label id="lblComboType" visible="false" text="{i18n&gt;Type}" width="auto" class="sapUiTinyMarginTop"/>
+                  <ComboBox id="cbxType" selectionChange="CbxSelectType" visible="false">
+                     <items>
+                        <core:Item key="table" text="Table" />
+                        <core:Item key="view" text="View" />
+                     </items>
+                  </ComboBox>
+                  <Title xmlns="sap.ui.core" text="" />
+                  <Label id="lblSelect" visible="false" text="" width="auto" class="sapUiTinyMarginTop" />
+                  <Input id="tableName" visible="false" showValueHelp="true" valueHelpRequest="handleValueHelp" width="auto" />
+               </form:content>
+            </form:SimpleForm>
+         </content>
+         <!-- sap.ui.core.Control -->
+      </Panel>
+      <Panel id="displayPanel" headerText="{i18n&gt;DisplayData}" width="100%" height="auto" expandable="false" expanded="true" visible="false">
+         <content>
+            <IconTabBar id="tabBarDetails" visible="true" backgroundDesign="Transparent" expanded="true" class="tabPosition">
+               <items>
+                  <IconTabFilter id="tabFields" text="{i18n&gt;Fields}">
+                     <Table id="tableFields" class="sapUiSizeCompact" items="{/bindingData}">
+                        <columns>
+                           <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                              <Text text="{i18n&gt;Field}" />
+                           </Column>
+                           <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                              <Text text="{i18n&gt;DataType}" />
+                           </Column>
+                           <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                              <Text text="{i18n&gt;Length}" />
+                           </Column>
+                           <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                              <Text text="{i18n&gt;Scale}" />
+                           </Column>
+                        </columns>
+                        <items>
+                           <ColumnListItem>
+                              <cells>
+                                 <Text text="{COLUMN_NAME}" wrapping="true" />
+                                 <Text text="{DATA_TYPE_NAME}" wrapping="true" />
+                                 <Text text="{LENGTH}" wrapping="true" />
+                                 <Text text="{SCALE}" wrapping="true" />
+                              </cells>
+                           </ColumnListItem>
+                        </items>
+                     </Table>
+                  </IconTabFilter>
+                  <IconTabFilter id="tabData" text="{i18n&gt;Entries}">
+                     <Table id="idInfoProvTable" columns="{/bindingData}" class="sapUiSizeCompact" selectionChange= "onSelectionChange">
+                        
+                        <headerToolbar>
+                           <Toolbar>
+                              <Input id="offSet" type="Text" placeholder="Offset e.g.=10" maxLength="3" width="10%" />
+                              <Input id="maxRow" type="Text" placeholder="Max Rows e.g.=10" maxLength="3" width="10%" />
+                              <ToolbarSpacer />
+                              <!-- <Button icon="sap-icon://drop-down-list" press="onPersoButtonPressed" 
+											/> -->
+                              <Input id="queryString" type="Text" placeholder="Enter Query String e.g.MATERIAL='1' " />
+                              <Button icon="sap-icon://search" text="Filter" press="onFilter" />
+                              <ToolbarSpacer/>
+                              <Button icon="sap-icon://add" text="Add" press="onAddEntry" visible="{mainView>/tableOperation}"/>
+                              <Button icon="sap-icon://save" text="Update" press="onUpdate" visible="{mainView>/tableOperation}"/>
+                              <Button icon="sap-icon://delete" text="Delete" press="onDelete" visible="{mainView>/tableOperation}"/>
+                           </Toolbar>
+                        </headerToolbar>
+                        <columns>
+                           <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                              <Text text="{COLUMN_NAME}" />
+                           </Column>
+                        </columns>
+                        <!-- <items> <ColumnListItem> <cells> <Text text="{column1}" wrapping="true" 
+									/> </cells> </ColumnListItem> </items> -->
+                     </Table>
+                  </IconTabFilter>
+               </items>
+            </IconTabBar>
+         </content>
+      </Panel>
+      <footer>
+         <Bar>
+            <contentRight>
+               <Button text="Reset" type="Emphasized" press="onReset" />
+            </contentRight>
+         </Bar>
+      </footer>
+   </Page>
+</core:View>

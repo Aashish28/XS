@@ -1,0 +1,16 @@
+// To define an XS OData service, you can use the following syntax.
+// In the example below Aggregation, Modification and Association are defined.
+
+service  { 
+
+// Aggregation example: A view with ID Amount, Month, and Year columns created in sample.test package.
+// Call http://host:port/package/file.xsodata/MyView?$select=Year,Amount
+
+   "SYS"."SCHEMAS" as "Schema" keys ("SCHEMA_NAME");                  // Table or View  
+   "SYS"."TABLES"  as "Tables" keys ("SCHEMA_NAME");                  // Table or View 
+   "SYS"."M_CS_TABLES" as "Table_History" keys ("SCHEMA_NAME","TABLE_NAME");
+   "SYS"."TABLE_COLUMNS"  as "TColumns" keys ("SCHEMA_NAME","TABLE_NAME"); // Table or View  
+   "SYS"."VIEWS"  as "Views" keys ("SCHEMA_NAME"); // Table or View   
+   "SYS"."VIEW_COLUMNS"  as "VColumns" keys ("SCHEMA_NAME","VIEW_NAME"); // Table or View new changes
+   
+}  

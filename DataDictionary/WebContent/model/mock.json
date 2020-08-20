@@ -1,0 +1,16 @@
+{
+	"TileCollection" : [
+		{
+			"icon" : "sap-icon://business-objects-experience",
+			"title" : "Info Provider Detail"
+		},
+		{
+			"icon" : "sap-icon://business-one",
+			"title" : "Info Provider Summary"
+		},
+		{
+			"icon" : "sap-icon://business-by-design",
+			"title" : "Info Provider Memory"
+		}
+	]
+}

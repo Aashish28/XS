@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog id="tableDialog" title="Tables"
+		class="sapUiPopupWithPadding" items="{/}" search="handleValueHelpSearch"
+		confirm="handleValueHelpClose">
+		<StandardListItem iconDensityAware="false" iconInset="false"
+			title="{TABLE_NAME}" />
+	</SelectDialog>
+</core:FragmentDefinition>
